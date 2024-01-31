@@ -1,39 +1,42 @@
+import java.util.HashMap;
+import java.util.Map;
+
 public class Basket{
     private String name;
-    private Product[] products;
-    private int count;
+    private Map<Product, Integer> productsInBasket;
 
-
-    public Basket(String name, Product[] products) {
+    public Basket(String name) {
         this.name = name;
-        this.products = products;
-        this.count = 0;
+        this.productsInBasket = new HashMap<>();
     }
-    public void addToBasket(int amount, String productName) {
-        for (Product product : products) {
-            if (product.getNameProduct().equals(productName)) {
-                //product.deleteFromProduct(amount, productName);
-                count += amount;
-                System.out.printf("С прилавка удалено %d единицы товара %s.%n", amount, productName);
-                System.out.printf("Добавлено %d единицы товара %s в корзину.%n", count, productName);
-                return;
+    public void addToBasket(int amount, Product product) {
+        if (productsInBasket.containsKey(product)) {
+            int currentAmount = productsInBasket.get(product);
+            productsInBasket.put(product, currentAmount + amount);
+        } else {
+            productsInBasket.put(product, amount);
+        }
+    }
+    public void deleteFromBasket(Product product, int amount) {
+        if (productsInBasket.containsKey(product)) {
+            int currentAmount = productsInBasket.get(product);
+            if (currentAmount > amount) {
+                productsInBasket.put(product, currentAmount - amount);
+            } else {
+                productsInBasket.remove(product);
             }
         }
-        System.out.println("Такого продукта нет на прилавках.");
     }
-
+    @Override
+    public String toString() {
+        return "В корзине сейчас лежит: " + productsInBasket;
+    }
 
     public String getName() {
         return name;
     }
-    public int getCount() {
-        return count;
-    }
-    public void getProducts() {
-        System.out.println("В тележке " + getCount() + " товара");
-        System.out.println("Среди них:");
-        for (Product product : products) {
-            System.out.printf("%s: %d шт.%n", product.getNameProduct(), getCount());
-        }
+
+    public Map<Product, Integer> getProductsInBasket() {
+        return productsInBasket;
     }
 }

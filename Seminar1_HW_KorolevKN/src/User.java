@@ -1,40 +1,19 @@
 public class User{
-    protected String name;
+
+
+    protected String username;
     protected String password;
+    protected Basket basket;
 
-    private Basket basket;
-
-    public User(String name, String password, Basket basket) {
-        this.name = name;
+    public User(String username, String password, Basket basket) {
+        this.username = username;
         this.password = password;
         this.basket = basket;
     }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public void setBasket(Basket basket) {
-        this.basket = basket;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getPassword() {
-        return password;
+    public String getUsername() {
+        return username;
     }
     public void getBasket() {
-        System.out.println("В корзине у " + getName() + ":");
-        basket.getProducts();
-    }
-    public void exitShop(){
-        System.out.println(name + " ушел из магазина, купив продукты.");
-        getBasket();
+        System.out.println("В корзине " + this.username + " лежит: " + this.basket.getProductsInBasket());
     }
 }

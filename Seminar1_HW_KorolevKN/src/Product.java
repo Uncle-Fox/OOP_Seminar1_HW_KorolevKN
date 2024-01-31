@@ -1,28 +1,33 @@
-public class Product {
-    protected int count;
-    private String name;
-    private double price;
-    private int rating; //целочисленный рейтинг от 1 до 10
-    public Product(String name, double price, int rating, int count) {
-        this.name = name;
-        this.price = price;
+public class Product extends Goods{
+    protected int rating;
+    private int status;
+
+    public Product(String name, double price, int rating, int status) {
+        super(name, price);
         this.rating = rating;
-        this.count = count;
+        this.status = status;
     }
-    public void deleteFromProduct(int amount, String productName){
-        this.count -= amount;
-        //System.out.printf("С прилавка удалено %d единицы товара %s.%n", amount, productName);
+    @Override
+    void deleteGood(int amount) {
+        this.status -= amount;
     }
-    public int getCount() {
-        return count;
+    @Override
+    void addGood(int amount) {
+        this.status += amount;
     }
-    public String getNameProduct() {
-        return name;
+    @Override
+    void showGoods() {
+        if(status != 0){
+            System.out.println("На прилавке лежит " + super.name + " с рейтингом " + this.rating + " в количестве " + status + " штук");
+        } else {
+            System.out.println("К сожалению товар закончился.");
+        }
     }
-    public double getPrice() {
-        return price;
+    @Override
+    public String toString() {
+        return name; // Или любая другая строка, представляющая продукт как строку
     }
-    public int getRating() {
-        return rating;
+    public int getStatus() {
+        return status;
     }
 }

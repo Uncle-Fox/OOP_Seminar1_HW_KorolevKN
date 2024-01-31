@@ -1,6 +1,6 @@
-public class Category {
+import java.util.Arrays;
 
-
+public class Category{
     private String name;
     private Product[] products;
 
@@ -8,18 +8,14 @@ public class Category {
         this.name = name;
         this.products = products;
     }
-
-    public void getAllCategory(){
-        System.out.println("В магазине продуктов вида " + getName() + " осталсось: ");
-        for (Product product : products) {
-            System.out.printf("%s: %d шт.%n", product.getNameProduct(), product.getCount());
+    public void showCategory(){
+        System.out.print("В категории " + this.name + " лежат продукты: ");
+        for (int i = 0; i < products.length; i++) {
+            System.out.print(products[i] + " в количестве " + products[i].getStatus());
+            if (i < products.length - 1) {
+                System.out.print(", ");
+            }
+            System.out.print("\n");
         }
-    }
-
-    public Product[] getProducts() {
-        return products;
-    }
-    public String getName() {
-        return name;
     }
 }
