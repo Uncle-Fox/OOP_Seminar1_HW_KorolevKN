@@ -1,5 +1,3 @@
-import java.util.Arrays;
-
 public class Category{
     private String name;
     private Product[] products;

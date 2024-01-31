@@ -29,7 +29,7 @@ public class Basket{
     }
     @Override
     public String toString() {
-        return "В корзине сейчас лежит: " + productsInBasket;
+        return "В тележке сейчас лежит: " + productsInBasket;
     }
 
     public String getName() {

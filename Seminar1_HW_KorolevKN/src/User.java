@@ -1,6 +1,4 @@
 public class User{
-
-
     protected String username;
     protected String password;
     protected Basket basket;
@@ -14,6 +12,6 @@ public class User{
         return username;
     }
     public void getBasket() {
-        System.out.println("В корзине " + this.username + " лежит: " + this.basket.getProductsInBasket());
+        System.out.println("В тележке " + this.username + " лежит: " + this.basket.getProductsInBasket());
     }
 }
